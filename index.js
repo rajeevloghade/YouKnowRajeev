@@ -1,22 +1,25 @@
 var readlineSync=require("readline-sync");
 
+//Using chalk here to style my game
+const chalk = require('chalk');
+const log=console.log;
+
 var userName=readlineSync.question("May i have your name please? \n");
 
-console.log("Welcome "+userName +" to DO YOU KNOW 'RAJEEV LOGHADE'?\n");
-console.log("NOTE: All answer should be in lowercase.");
-console.log("-------------------------------------------");
+log("Welcome "+ chalk.green(userName) +", to DO YOU KNOW "+chalk.yellowBright('RAJEEV LOGHADE')+"?");
+log("---------------------------------------------------------");
 // --------------------------------------------------
 var score=0;
 
 function play(question,answer){
     var userAnswer=readlineSync.question(question);
-  if(userAnswer===answer){
+  if(userAnswer.toUpperCase()===answer.toUpperCase()){
     score++;
-    console.log("Yes..!!! you are right.");
-    console.log("----------------------------------------");
+    log(chalk.green("Yes..!!! you are right."));
+    log(chalk.bold.yellow("---------------------------------------------------------"));
   }else{
-    console.log("Oops..!!! you are wrong.");
-    console.log("----------------------------------------");
+    log(chalk.red("Oops..!!! you are wrong."));
+     log(chalk.bold.yellow("---------------------------------------------------------"));
   }
 }
 
@@ -54,4 +57,4 @@ var arrayOfQuestion=[{
 for(var i=0;i<arrayOfQuestion.length;i++){
   play(arrayOfQuestion[i].question,arrayOfQuestion[i].answer);
 }
-console.log("Your final score is: "+score);
+log(chalk.yellowBright("Your final score is: "+score));
